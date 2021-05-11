@@ -21,7 +21,7 @@ class ScoreViewModel {
         scoreUseCase.fetchGameInformation(endpoint: Endpoint.game).sink { (completion) in
             switch completion {
             case .failure(let error):
-                print(error)
+                assertionFailure("\(error)")
             case .finished:
                 break
             }
@@ -36,7 +36,6 @@ class ScoreViewModel {
                 if game != nil {
                     completion(game!)
                 } else {
-                    print("game is empty")
                     return
                 }
         }.store(in: &subscriptions)

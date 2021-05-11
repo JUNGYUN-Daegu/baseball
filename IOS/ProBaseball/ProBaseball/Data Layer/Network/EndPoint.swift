@@ -45,9 +45,5 @@ extension Endpoint {
     static var game: Self {
            return Endpoint(path: "/game") as! Self
        }
-//
-//       static func user(id: String) -> Self {
-//           return Endpoint(path: "/user/\(id)")
-//       }
 }
 

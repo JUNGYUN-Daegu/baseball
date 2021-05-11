@@ -21,7 +21,7 @@ class GameListViewModel {
         gameListUseCase.fetchGameList(endpoint: Endpoint.test).sink { (completion) in
             switch completion {
             case .failure(let error):
-                print(error)
+                assertionFailure("\(error)")
             case .finished:
                 break
             }
@@ -36,7 +36,6 @@ class GameListViewModel {
                 if gameList != nil {
                     completion(gameList!)
                 } else {
-                    print("gameList is empty")
                     return
                 }
         }.store(in: &subscriptions)

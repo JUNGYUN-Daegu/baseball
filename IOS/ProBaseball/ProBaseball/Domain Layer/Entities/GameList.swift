@@ -49,6 +49,7 @@ struct Player: Codable, CustomStringConvertible, Hashable {
     let plateAppearance, numberOfPitches, hitsNumbers, accumulatedOutCount: Int
 }
 
+// for debug purpose
 extension CustomStringConvertible where Self: Codable {
     var description: String {
         var description = "\(type(of: self)) \n"

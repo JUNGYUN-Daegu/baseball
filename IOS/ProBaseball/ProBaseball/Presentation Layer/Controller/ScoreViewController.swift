@@ -20,7 +20,6 @@ class ScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view has been loaded")
         
         playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PlayerListCollectionViewCell")
         playerListCollectionView.dataSource = self.dataSource
@@ -53,7 +52,6 @@ class ScoreViewController: UIViewController {
     func updateSnapshot(with game: Game) {
         var snapshot = NSDiffableDataSourceSnapshot<ScoreSection, Player>()
         snapshot.appendSections(ScoreSection.allCases)
-        print(game)
         snapshot.appendItems(game.myTeam.players, toSection: ScoreSection.main)
         dataSource.apply(snapshot)
     }
