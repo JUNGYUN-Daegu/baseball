@@ -41,6 +41,7 @@
 		8872ECE3264A1F4900EDB038 /* ScoreViewSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ECE2264A1F4900EDB038 /* ScoreViewSceneDIContainer.swift */; };
 		8872ECE7264A20D500EDB038 /* ScoreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ECE6264A20D500EDB038 /* ScoreUseCase.swift */; };
 		8872ECEC264A4DD100EDB038 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ECEB264A4DD100EDB038 /* ScoreViewModel.swift */; };
+		8872ED09264B9E7700EDB038 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED08264B9E7700EDB038 /* PlayerIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		8872ECE2264A1F4900EDB038 /* ScoreViewSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewSceneDIContainer.swift; sourceTree = "<group>"; };
 		8872ECE6264A20D500EDB038 /* ScoreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUseCase.swift; sourceTree = "<group>"; };
 		8872ECEB264A4DD100EDB038 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
+		8872ED08264B9E7700EDB038 /* PlayerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +206,7 @@
 				1ED6F94826438E9300FEFADF /* HomeView.swift */,
 				8872EC0D2643BF6200EDB038 /* BallCountCollectionViewCell.swift */,
 				8872EC0E2643BF6200EDB038 /* BallCountCollectionViewCell.xib */,
+				8872ED08264B9E7700EDB038 /* PlayerIconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				8872EBED2640EFED00EDB038 /* GameListCollectionViewCell.swift in Sources */,
 				1E95E2C5264A457B00EDDE28 /* PlayViewModel.swift in Sources */,
 				8872EC0F2643BF6200EDB038 /* BallCountCollectionViewCell.swift in Sources */,
+				8872ED09264B9E7700EDB038 /* PlayerIconView.swift in Sources */,
 				8872ECE3264A1F4900EDB038 /* ScoreViewSceneDIContainer.swift in Sources */,
 				8872EC332645A74500EDB038 /* NetworkError.swift in Sources */,
 				1ED6F947264389B400FEFADF /* DiamondView.swift in Sources */,

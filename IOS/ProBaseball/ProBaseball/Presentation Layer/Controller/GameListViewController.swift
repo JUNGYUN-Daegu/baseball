@@ -32,6 +32,17 @@ class GameListViewController: UIViewController {
         
         configureGameListLabel()
         bind()
+        
+        // for test
+        let playerIconView = PlayerIconView()
+        playerIconView.translatesAutoresizingMaskIntoConstraints = false
+        playerIconView.backgroundColor = .clear
+        self.view.addSubview(playerIconView)
+        playerIconView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        playerIconView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        playerIconView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.7).isActive = true
+        playerIconView.heightAnchor.constraint(equalTo: playerIconView.widthAnchor).isActive = true
+        
     }
     
     func configureGameListLabel() {
