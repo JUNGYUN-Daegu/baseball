@@ -12,6 +12,7 @@ class ScoreViewModel {
     private let scoreUseCase: ScoreUseCaseProtocol
     private var subscriptions = Set<AnyCancellable>()
     @Published var game: Game?
+    public var statistics: [[Int]] = [[0,0,0],[0,0,0]]
     
     init(scoreUseCase: ScoreUseCaseProtocol) {
         self.scoreUseCase = scoreUseCase
@@ -34,10 +35,25 @@ class ScoreViewModel {
         $game
             .sink { (game) in
                 if game != nil {
+                    self.calculateStatistics(with: game!)
                     completion(game!)
                 } else {
                     return
                 }
         }.store(in: &subscriptions)
+    }
+    
+    func calculateStatistics(with game: Game) {
+        for player in game.myTeam.players {
+            statistics[0][0] += player.plateAppearance
+            statistics[0][1] += player.hitsNumbers
+            statistics[0][2] += player.accumulatedOutCount
+        }
+        
+        for player in game.opponentTeam.players {
+            statistics[1][0] += player.plateAppearance
+            statistics[1][1] += player.hitsNumbers
+            statistics[1][2] += player.accumulatedOutCount
+        }
     }
 }

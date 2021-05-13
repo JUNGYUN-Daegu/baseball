@@ -37,8 +37,8 @@ class GameListViewController: UIViewController {
     func configureGameListLabel() {
         self.gameListLabel.layer.shadowColor = UIColor(named: "retroBrown")?.cgColor
         self.gameListLabel.layer.shadowOffset = CGSize(width: 0, height: 6)
-               self.gameListLabel.layer.shadowOpacity = 1.0
-               self.gameListLabel.layer.shadowRadius = 0.0
+        self.gameListLabel.layer.shadowOpacity = 1.0
+        self.gameListLabel.layer.shadowRadius = 0.0
         
         let str = NSMutableAttributedString(string: "Game List", attributes: [
             NSMutableAttributedString.Key.foregroundColor : UIColor(named: "retroIvory") ?? UIColor.red,

@@ -25,6 +25,8 @@ class ScoreViewController: UIViewController {
 
         playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier)
         
+        playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PlayerListCollectionViewFooterView.reuseIdentifier)
+        
         playerListCollectionView.dataSource = self.dataSource
         playerListCollectionView.delegate = self
         
@@ -57,8 +59,11 @@ class ScoreViewController: UIViewController {
                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier, for: indexPath)
                 return headerView
             case UICollectionView.elementKindSectionFooter:
-                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier, for: indexPath)
-                return headerView
+                let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewFooterView.reuseIdentifier, for: indexPath) as! PlayerListCollectionViewFooterView
+                footerView.baLabel.text = "\(self.viewModel.statistics[0][0])"
+                footerView.hLabel.text = "\(self.viewModel.statistics[0][1])"
+                footerView.outLabel.text = "\(self.viewModel.statistics[0][2])"
+                return footerView
             default: assert(false, "False Section") }
         }
         return dataSource
@@ -82,6 +87,10 @@ extension ScoreViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: self.playerListCollectionView.frame.height / 16)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: self.playerListCollectionView.frame.height / 16)
     }
 }
