@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -123,7 +124,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="MlL-Fk-she"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6a-Wo-Fom">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6a-Wo-Fom" customClass="PlayBackgroundView" customModule="ProBaseball" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="101.5" width="414" height="270"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Aa4-tJ-87E">
@@ -156,15 +157,15 @@
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FfI-Vh-reh">
                                                 <rect key="frame" x="20" y="2.5" width="20" height="19"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                <color key="tintColor" name="retroBlue"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uuT-a1-B1k">
                                                 <rect key="frame" x="40" y="2.5" width="20" height="19"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                <color key="tintColor" name="retroBlue"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ce2-gY-SrQ">
                                                 <rect key="frame" x="60" y="2.5" width="20" height="19"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                <color key="tintColor" name="retroBlue"/>
                                             </imageView>
                                         </subviews>
                                     </stackView>
@@ -205,14 +206,22 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2B-xv-qh3" customClass="PlayView" customModule="ProBaseball" customModuleProvider="target">
-                                        <rect key="frame" x="90" y="18" width="234" height="234"/>
+                                        <rect key="frame" x="93.5" y="40.5" width="227" height="189"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="N2B-xv-qh3" secondAttribute="height" id="ABF-NO-Aps"/>
+                                            <constraint firstAttribute="width" secondItem="N2B-xv-qh3" secondAttribute="height" multiplier="1.2:1" id="ABF-NO-Aps"/>
                                         </constraints>
                                     </view>
+                                    <button hidden="YES" opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P73-YQ-lKg">
+                                        <rect key="frame" x="177" y="117" width="60" height="36"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <state key="normal" title="PITCH">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="rPl-XI-xUI" firstAttribute="top" secondItem="NmS-pl-kB9" secondAttribute="bottom" id="938-KL-veZ"/>
                                     <constraint firstAttribute="trailing" secondItem="ptV-Da-Zu0" secondAttribute="trailing" constant="10" id="BN4-pc-fIc"/>
@@ -221,12 +230,17 @@
                                     <constraint firstItem="NmS-pl-kB9" firstAttribute="top" secondItem="p6a-Wo-Fom" secondAttribute="top" constant="10" id="cvd-np-MMd"/>
                                     <constraint firstAttribute="height" constant="270" id="gLK-yl-oMY"/>
                                     <constraint firstItem="NmS-pl-kB9" firstAttribute="leading" secondItem="p6a-Wo-Fom" secondAttribute="leading" constant="10" id="h9X-EK-DJt"/>
-                                    <constraint firstItem="N2B-xv-qh3" firstAttribute="height" secondItem="p6a-Wo-Fom" secondAttribute="height" multiplier="0.866667" id="jOd-pf-yYn"/>
+                                    <constraint firstItem="N2B-xv-qh3" firstAttribute="height" secondItem="p6a-Wo-Fom" secondAttribute="height" multiplier="0.7" id="jOd-pf-yYn"/>
+                                    <constraint firstItem="P73-YQ-lKg" firstAttribute="centerX" secondItem="N2B-xv-qh3" secondAttribute="centerX" id="jcx-hR-zxp"/>
                                     <constraint firstItem="ptV-Da-Zu0" firstAttribute="top" secondItem="p6a-Wo-Fom" secondAttribute="top" constant="10" id="okz-Cc-IUJ"/>
                                     <constraint firstItem="Aa4-tJ-87E" firstAttribute="leading" secondItem="p6a-Wo-Fom" secondAttribute="leading" constant="10" id="pGL-Kg-m6i"/>
+                                    <constraint firstItem="P73-YQ-lKg" firstAttribute="centerY" secondItem="N2B-xv-qh3" secondAttribute="centerY" id="qSe-Ow-rPW"/>
                                     <constraint firstItem="N2B-xv-qh3" firstAttribute="centerY" secondItem="p6a-Wo-Fom" secondAttribute="centerY" id="qbT-wd-iwV"/>
                                     <constraint firstItem="Aa4-tJ-87E" firstAttribute="top" secondItem="rPl-XI-xUI" secondAttribute="bottom" id="uS3-GU-GHA"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="playView" destination="N2B-xv-qh3" id="eHX-d3-0mI"/>
+                                </connections>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPf-lW-GYb">
                                 <rect key="frame" x="0.0" y="371.5" width="414" height="50"/>
@@ -392,6 +406,7 @@
                         <outlet property="inningLabel" destination="XFt-NA-Kdb" id="62p-kB-eji"/>
                         <outlet property="offenseOrDefense" destination="YED-QM-syP" id="n4e-f2-qOz"/>
                         <outlet property="outStackView" destination="Aa4-tJ-87E" id="ntz-iS-imd"/>
+                        <outlet property="playBackgroundView" destination="p6a-Wo-Fom" id="iMO-jM-1FF"/>
                         <outlet property="strikeStackView" destination="NmS-pl-kB9" id="JGI-fZ-s01"/>
                     </connections>
                 </viewController>
@@ -855,6 +870,9 @@
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="retroBlue">
+            <color red="0.030999999493360519" green="0.32499998807907104" blue="0.42699998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

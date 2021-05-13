@@ -1,16 +1,16 @@
 //
-//  DiamondView.swift
+//  PlayerView.swift
 //  ProBaseball
 //
-//  Created by 오킹 on 2021/05/06.
+//  Created by 오킹 on 2021/05/12.
 //
 
+import Foundation
 import UIKit
 
-class DiamondView: UIView {
+class PlayerView: UIView {
 
-    var path: UIBezierPath!
-    var pathShadow: UIBezierPath!
+    private var path: UIBezierPath!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,9 +19,8 @@ class DiamondView: UIView {
     
     override func draw(_ rect: CGRect) {
         self.createRectangle()
-
-        setFillBase(color: .white)
-        UIColor.white.setStroke()
+        setFillBase(color: .black)
+        UIColor.darkGray.setStroke()
         path.lineWidth = 1
         path.stroke()
     }
@@ -46,5 +45,4 @@ class DiamondView: UIView {
         color.setFill()
         path.fill()
     }
-    
 }

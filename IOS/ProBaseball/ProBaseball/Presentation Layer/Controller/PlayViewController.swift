@@ -23,6 +23,9 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var offenseOrDefense: UILabel!
     @IBOutlet weak var ballCountCollectionView: UICollectionView!
     lazy var dataSource = configureDataSource()
+    
+    @IBOutlet weak var playBackgroundView: PlayBackgroundView!
+    var playerView: PlayerView!
     var viewModel: PlayViewModel!
     
     override func viewDidLoad() {
@@ -32,10 +35,57 @@ class PlayViewController: UIViewController {
         ballCountCollectionView.dataSource = dataSource
         ballCountCollectionView.delegate = self
         bind()
+        addBatterView()
+        runToFirstBase()
     }
     
     func depend(viewModel: PlayViewModel) {
         self.viewModel = viewModel
+    }
+    
+    func addBatterView() {
+        playerView = PlayerView(frame: CGRect(x: self.playBackgroundView.playView.bounds.midX-20, y: self.playBackgroundView.playView.bounds.maxY-20, width: 40, height: 40))
+        self.playBackgroundView.playView.addSubview(playerView)
+    }
+    
+    func runToFirstBase() {
+        UIView.animate(withDuration:1,
+        delay: 0,
+        options: [],
+        animations: {
+            self.playerView.frame = CGRect(x: self.playBackgroundView.playView.bounds.maxX-20, y: self.playBackgroundView.playView.bounds.midY-20, width: 40, height: 40)
+        },
+        completion: { _ in self.runToSecondBase()})
+    }
+    
+    func runToSecondBase() {
+        UIView.animate(withDuration:1,
+        delay: 0,
+        options: [],
+        animations: {
+        self.playerView.frame = CGRect(x: self.playBackgroundView.playView.bounds.midX-20, y: self.playBackgroundView.playView.bounds.minY-20, width: 40, height: 40)
+        },
+        completion: { _ in self.runToThirdBase()})
+    }
+    
+    func runToThirdBase() {
+        UIView.animate(withDuration:1,
+        delay: 0,
+        options: [],
+        animations: {
+        self.playerView.frame = CGRect(x: self.playBackgroundView.playView.bounds.minX-20, y: self.playBackgroundView.playView.bounds.midY-20, width: 40, height: 40)
+        },
+        completion: { _ in self.runToHomeBase() })
+    }
+    
+    func runToHomeBase() {
+        UIView.animate(withDuration:1,
+        delay: 0,
+        options: [],
+        animations: {
+        self.playerView.frame = CGRect(x: self.playBackgroundView.playView.bounds.midX-20, y: self.playBackgroundView.playView.bounds.maxY-20, width: 40, height: 40)
+        },
+        completion: nil)
     }
     
     func bind() {
