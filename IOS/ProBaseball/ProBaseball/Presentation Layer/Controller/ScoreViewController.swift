@@ -22,10 +22,14 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
         
         playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PlayerListCollectionViewCell")
+
+        playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier)
+        
         playerListCollectionView.dataSource = self.dataSource
         playerListCollectionView.delegate = self
-        self.dataSource = configureDataSource()
         
+        self.dataSource = configureDataSource()
+
         bind()
     }
     
@@ -46,6 +50,17 @@ class ScoreViewController: UIViewController {
             cell.configureCell(with: player)
             return cell
         }
+        
+        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier, for: indexPath)
+                return headerView
+            case UICollectionView.elementKindSectionFooter:
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier, for: indexPath)
+                return headerView
+            default: assert(false, "False Section") }
+        }
         return dataSource
     }
     
@@ -56,7 +71,7 @@ class ScoreViewController: UIViewController {
         dataSource.apply(snapshot)
     }
 }
-    
+
 extension ScoreViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.playerListCollectionView.frame.width, height: self.playerListCollectionView.frame.height / 16)
@@ -64,5 +79,9 @@ extension ScoreViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(1)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: self.playerListCollectionView.frame.height / 16)
     }
 }

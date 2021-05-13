@@ -42,6 +42,8 @@
 		8872ECE7264A20D500EDB038 /* ScoreUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ECE6264A20D500EDB038 /* ScoreUseCase.swift */; };
 		8872ECEC264A4DD100EDB038 /* ScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ECEB264A4DD100EDB038 /* ScoreViewModel.swift */; };
 		8872ED09264B9E7700EDB038 /* PlayerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED08264B9E7700EDB038 /* PlayerIconView.swift */; };
+		8872ED31264C404F00EDB038 /* PlayerListCollectionViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872ED2F264C404F00EDB038 /* PlayerListCollectionViewHeaderView.swift */; };
+		8872ED32264C404F00EDB038 /* PlayerListCollectionViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8872ED30264C404F00EDB038 /* PlayerListCollectionViewHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		8872ECE6264A20D500EDB038 /* ScoreUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreUseCase.swift; sourceTree = "<group>"; };
 		8872ECEB264A4DD100EDB038 /* ScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewModel.swift; sourceTree = "<group>"; };
 		8872ED08264B9E7700EDB038 /* PlayerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIconView.swift; sourceTree = "<group>"; };
+		8872ED2F264C404F00EDB038 /* PlayerListCollectionViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListCollectionViewHeaderView.swift; sourceTree = "<group>"; };
+		8872ED30264C404F00EDB038 /* PlayerListCollectionViewHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerListCollectionViewHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,8 @@
 			children = (
 				8872ECD92649075C00EDB038 /* PlayerListCollectionViewCell.swift */,
 				8872ECDA2649075C00EDB038 /* PlayerListCollectionViewCell.xib */,
+				8872ED2F264C404F00EDB038 /* PlayerListCollectionViewHeaderView.swift */,
+				8872ED30264C404F00EDB038 /* PlayerListCollectionViewHeaderView.xib */,
 			);
 			path = PlayerListCollectionViewCofig;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				8872EBEE2640EFED00EDB038 /* GameListCollectionViewCell.xib in Resources */,
 				8872ECDC2649075C00EDB038 /* PlayerListCollectionViewCell.xib in Resources */,
 				8872EBAD263FD2FC00EDB038 /* LaunchScreen.storyboard in Resources */,
+				8872ED32264C404F00EDB038 /* PlayerListCollectionViewHeaderView.xib in Resources */,
 				8872EC102643BF6200EDB038 /* BallCountCollectionViewCell.xib in Resources */,
 				8872EC1E2644EC0B00EDB038 /* AmericanCaptain.otf in Resources */,
 				8872EBAA263FD2FC00EDB038 /* Assets.xcassets in Resources */,
@@ -384,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8872ED31264C404F00EDB038 /* PlayerListCollectionViewHeaderView.swift in Sources */,
 				8872EC6426479E1900EDB038 /* GameListViewModel.swift in Sources */,
 				8872EBED2640EFED00EDB038 /* GameListCollectionViewCell.swift in Sources */,
 				1E95E2C5264A457B00EDDE28 /* PlayViewModel.swift in Sources */,

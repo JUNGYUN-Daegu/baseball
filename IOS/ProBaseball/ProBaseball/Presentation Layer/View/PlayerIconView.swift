@@ -20,7 +20,6 @@ class PlayerIconView: UIView {
         drawCap(using: currentContext, centerPoint: center, frame: iconSize)
         drawEyes(using: currentContext, centerPoint: center, frame: iconSize)
         drawMouth(using: currentContext, centerPoint: center, frame: iconSize)
-        
     }
     
     private func drawSilhouette(using context: CGContext, centerPoint: CGPoint, frame: CGRect) {
