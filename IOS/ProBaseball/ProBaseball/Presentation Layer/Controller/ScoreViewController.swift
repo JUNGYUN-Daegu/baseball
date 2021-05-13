@@ -14,13 +14,13 @@ enum ScoreSection: CaseIterable {
 
 class ScoreViewController: UIViewController {
     @IBOutlet weak var playerListCollectionView: UICollectionView!
- 
+    @IBOutlet weak var teamSelectSegmentedControl: UISegmentedControl!
+    
     var viewModel: ScoreViewModel!
     var dataSource: UICollectionViewDiffableDataSource<ScoreSection, Player>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PlayerListCollectionViewCell")
 
         playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier)
@@ -30,9 +30,22 @@ class ScoreViewController: UIViewController {
         playerListCollectionView.dataSource = self.dataSource
         playerListCollectionView.delegate = self
         
-        self.dataSource = configureDataSource()
+        self.dataSource = configureDataSource(index: 0)
 
         bind()
+    }
+    
+    @IBAction func changeSegmentedControl(_ sender: UISegmentedControl) {
+        guard let game = viewModel.game else { return }
+        self.dataSource = configureDataSource(index: sender.selectedSegmentIndex)
+        updateSnapshot(with: game, index: sender.selectedSegmentIndex)
+    }
+    
+    func updateSegConLabels(with game: Game) {
+        DispatchQueue.main.async {
+            self.teamSelectSegmentedControl.setTitle(game.myTeam.name, forSegmentAt: 0)
+            self.teamSelectSegmentedControl.setTitle(game.opponentTeam.name, forSegmentAt: 1)
+        }
     }
     
     func depend(viewModel: ScoreViewModel) {
@@ -42,17 +55,23 @@ class ScoreViewController: UIViewController {
     func bind() {
         viewModel.fetchGameInfo()
         viewModel.didUpdateGameInfo { (game) in
-            self.updateSnapshot(with: game)
+            self.updateSnapshot(with: game, index: 0)
+            self.updateSegConLabels(with: game)
         }
     }
         
-    func configureDataSource() -> UICollectionViewDiffableDataSource<ScoreSection, Player> {
+    func configureDataSource(index: Int) -> UICollectionViewDiffableDataSource<ScoreSection, Player> {
         let dataSource = UICollectionViewDiffableDataSource<ScoreSection, Player>(collectionView: playerListCollectionView) { (collectionView, indexPath, player) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayerListCollectionViewCell", for: indexPath) as! PlayerListCollectionViewCell
             cell.configureCell(with: player)
             return cell
         }
         
+        configureHeaderFooter(with: dataSource, index: index)
+        return dataSource
+    }
+    
+    func configureHeaderFooter(with dataSource: UICollectionViewDiffableDataSource<ScoreSection, Player>, index: Int) {
         dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
             switch kind {
             case UICollectionView.elementKindSectionHeader:
@@ -60,19 +79,31 @@ class ScoreViewController: UIViewController {
                 return headerView
             case UICollectionView.elementKindSectionFooter:
                 let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PlayerListCollectionViewFooterView.reuseIdentifier, for: indexPath) as! PlayerListCollectionViewFooterView
-                footerView.baLabel.text = "\(self.viewModel.statistics[0][0])"
-                footerView.hLabel.text = "\(self.viewModel.statistics[0][1])"
-                footerView.outLabel.text = "\(self.viewModel.statistics[0][2])"
+                
+                if index == 0 {
+                    footerView.baLabel.text = "\(self.viewModel.statistics[0][0])"
+                    footerView.hLabel.text = "\(self.viewModel.statistics[0][1])"
+                    footerView.outLabel.text = "\(self.viewModel.statistics[0][2])"
+                } else {
+                    footerView.baLabel.text = "\(self.viewModel.statistics[1][0])"
+                    footerView.hLabel.text = "\(self.viewModel.statistics[1][1])"
+                    footerView.outLabel.text = "\(self.viewModel.statistics[1][2])"
+                }
+                
                 return footerView
             default: assert(false, "False Section") }
         }
-        return dataSource
     }
     
-    func updateSnapshot(with game: Game) {
+    func updateSnapshot(with game: Game, index: Int) {
         var snapshot = NSDiffableDataSourceSnapshot<ScoreSection, Player>()
         snapshot.appendSections(ScoreSection.allCases)
-        snapshot.appendItems(game.myTeam.players, toSection: ScoreSection.main)
+        
+        if index == 0 {
+            snapshot.appendItems(game.myTeam.players, toSection: ScoreSection.main)
+        } else {
+            snapshot.appendItems(game.opponentTeam.players, toSection: ScoreSection.main)
+        }
         dataSource.apply(snapshot)
     }
 }
