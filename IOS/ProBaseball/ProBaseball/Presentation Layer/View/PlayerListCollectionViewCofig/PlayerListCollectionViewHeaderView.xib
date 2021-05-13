@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="U6b-Vx-4bR">
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="U6b-Vx-4bR" customClass="PlayerListCollectionViewHeaderView" customModule="ProBaseball" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -67,6 +67,13 @@
                 <constraint firstItem="CO8-bk-03e" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="wVC-p6-aFc"/>
                 <constraint firstItem="uPI-8Q-7ag" firstAttribute="bottom" secondItem="VXr-Tz-HHm" secondAttribute="bottom" id="xiY-nf-Ii1"/>
             </constraints>
+            <connections>
+                <outletCollection property="labelCollection" destination="CO8-bk-03e" collectionClass="NSMutableArray" id="p7k-rf-BsK"/>
+                <outletCollection property="labelCollection" destination="FVM-Eb-TQh" collectionClass="NSMutableArray" id="wgC-Jw-XBp"/>
+                <outletCollection property="labelCollection" destination="mI6-n5-UhR" collectionClass="NSMutableArray" id="BH8-Fl-IGt"/>
+                <outletCollection property="labelCollection" destination="uPI-8Q-7ag" collectionClass="NSMutableArray" id="rcR-aQ-YsU"/>
+                <outletCollection property="labelCollection" destination="rjV-AD-r1v" collectionClass="NSMutableArray" id="wgL-EL-e9Z"/>
+            </connections>
             <point key="canvasLocation" x="139" y="62"/>
         </collectionReusableView>
     </objects>

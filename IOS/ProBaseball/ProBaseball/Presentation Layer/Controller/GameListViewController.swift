@@ -22,7 +22,7 @@ class GameListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameListImageView.backgroundColor = UIColor(patternImage: UIImage(named: "baseBallPattern")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "baseBallPattern")!)
         self.gameListCollectionView.backgroundColor = .clear
         
         gameListCollectionView.register(UINib(nibName: "GameListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GameListCollectionViewCell")

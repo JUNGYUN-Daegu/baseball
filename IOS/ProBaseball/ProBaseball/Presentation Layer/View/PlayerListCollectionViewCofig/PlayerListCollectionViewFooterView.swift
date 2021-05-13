@@ -8,6 +8,7 @@
 import UIKit
 
 class PlayerListCollectionViewFooterView: UICollectionReusableView {
+    @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var baLabel: UILabel!
     @IBOutlet weak var hLabel: UILabel!
     @IBOutlet weak var outLabel: UILabel!
@@ -18,5 +19,10 @@ class PlayerListCollectionViewFooterView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        totalLabel.font = UIFont(name: "AmericanCaptain", size: 25)
+        baLabel.font = UIFont(name: "AmericanCaptain", size: 25)
+        hLabel.font = UIFont(name: "AmericanCaptain", size: 25)
+        outLabel.font = UIFont(name: "AmericanCaptain", size: 25)
     }
 }

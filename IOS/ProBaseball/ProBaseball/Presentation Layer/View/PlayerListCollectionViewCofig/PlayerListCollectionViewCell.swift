@@ -32,6 +32,10 @@ class PlayerListCollectionViewCell: UICollectionViewCell {
         self.plateAppearanceLabel.text = "\(player.plateAppearance)"
         self.hitsNumbersLabel.text = "\(player.hitsNumbers)"
         self.accumulatedOutCountLabel.text = "\(player.accumulatedOutCount)"
-        self.averageLabel.text = "1.000"
+        guard (player.hitsNumbers > 0) && (player.plateAppearance > 0) else { self.averageLabel.text = "0"
+            return
+        }
+        
+        self.averageLabel.text = "\(round(Float(player.hitsNumbers) / Float(player.plateAppearance) * 1000) / 1000.0)"
     }
 }

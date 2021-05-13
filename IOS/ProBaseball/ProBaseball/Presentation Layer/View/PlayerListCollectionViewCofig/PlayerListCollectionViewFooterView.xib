@@ -61,6 +61,7 @@
                 <outlet property="baLabel" destination="SVF-wY-S9S" id="Qws-ND-Xi9"/>
                 <outlet property="hLabel" destination="Q7O-BJ-Exj" id="5mx-dS-q6v"/>
                 <outlet property="outLabel" destination="5aj-o7-eb5" id="5Rh-oH-fD7"/>
+                <outlet property="totalLabel" destination="dSv-c3-hae" id="wnc-tK-4AJ"/>
             </connections>
             <point key="canvasLocation" x="139" y="61"/>
         </collectionReusableView>

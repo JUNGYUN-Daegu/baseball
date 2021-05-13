@@ -8,11 +8,18 @@
 import UIKit
 
 class PlayerListCollectionViewHeaderView: UICollectionReusableView {
+    
+    @IBOutlet var labelCollection: [UILabel]!
+    
     static var reuseIdentifier: String {
         return String(describing: PlayerListCollectionViewHeaderView.self)
       }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        labelCollection.forEach { (label) in
+            label.font = UIFont(name: "AmericanCaptain", size: 25)
+        }
     }
 }
