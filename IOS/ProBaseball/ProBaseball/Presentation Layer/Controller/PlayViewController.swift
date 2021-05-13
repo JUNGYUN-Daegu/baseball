@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 enum BallCountSection: CaseIterable {
     case main
@@ -26,6 +27,7 @@ class PlayViewController: UIViewController {
     
     @IBOutlet weak var playBackgroundView: PlayBackgroundView!
     var playerView: PlayerView!
+    @IBOutlet weak var baseBall: UIImageView!
     var viewModel: PlayViewModel!
     
     override func viewDidLoad() {
@@ -37,6 +39,7 @@ class PlayViewController: UIViewController {
         bind()
         addBatterView()
         runToFirstBase()
+        throwBall()
     }
     
     func depend(viewModel: PlayViewModel) {
@@ -46,6 +49,53 @@ class PlayViewController: UIViewController {
     func addBatterView() {
         playerView = PlayerView(frame: CGRect(x: self.playBackgroundView.playView.bounds.midX-20, y: self.playBackgroundView.playView.bounds.maxY-20, width: 40, height: 40))
         self.playBackgroundView.playView.addSubview(playerView)
+    }
+    
+    func PitchAnimation() {
+        UIView.animate(withDuration:1,
+        delay: 0,
+        options: [],
+        animations: {
+            self.playerView.frame = CGRect(x: self.playBackgroundView.playView.bounds.midX-20, y: self.playBackgroundView.playView.bounds.maxY-20, width: 40, height: 40)
+        },
+        completion: { _ in self.runToSecondBase()})
+    }
+    
+    func position(path: UIBezierPath, duration: Double, repeatCount: Float) -> CAKeyframeAnimation {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position"
+        animation.path = path.cgPath
+        animation.duration = duration
+        animation.timingFunctions = [CAMediaTimingFunction(name: .easeOut)]
+        animation.repeatCount = repeatCount
+        return animation
+   }
+    
+    func createShadowLayer() -> CALayer {
+        let shadowLayer = CALayer()
+        shadowLayer.shadowColor = UIColor.red.cgColor
+        shadowLayer.shadowOffset = CGSize.zero
+        shadowLayer.shadowRadius = 2
+        shadowLayer.shadowOpacity = 2
+        shadowLayer.backgroundColor = UIColor.black.cgColor
+        return shadowLayer
+    }
+    
+    func throwBall() {
+        
+        let path = UIBezierPath()
+        let line = CAShapeLayer()
+ 
+        line.path = path.cgPath
+        line.strokeColor = UIColor.blue.cgColor
+        line.fillColor = UIColor.clear.cgColor
+        line.lineWidth = 2.0
+        baseBall.layer.addSublayer(line)
+
+        path.move(to: CGPoint(x: baseBall.frame.midX, y: baseBall.frame.midY))
+        path.addQuadCurve(to: CGPoint(x: playBackgroundView.playView.frame.midX, y: playBackgroundView.playView.frame.maxY), controlPoint: CGPoint(x: 220, y: 200))
+        self.baseBall.layer.add(position(path: path, duration: 1.5, repeatCount: 3), forKey: "position")
+        
     }
     
     func runToFirstBase() {
