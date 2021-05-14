@@ -10,6 +10,7 @@ import UIKit
 class DiamondView: UIView {
 
     var path: UIBezierPath!
+    var pathShadow: UIBezierPath!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,8 +19,9 @@ class DiamondView: UIView {
     
     override func draw(_ rect: CGRect) {
         self.createRectangle()
-        setFillBase(color: .black)
-        UIColor.darkGray.setStroke()
+
+        setFillBase(color: .white)
+        UIColor.white.setStroke()
         path.lineWidth = 1
         path.stroke()
     }

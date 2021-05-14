@@ -12,6 +12,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let screen = (scene as? UIWindowScene) else { return }
+        
+        //첫번째 화면
+//        let diContainer = GameListSceneDIContainer()
+//
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let initialViewController = storyboard.instantiateViewController(identifier: "GameListViewController") as! GameListViewController
+//
+//        initialViewController.depend(viewModel: diContainer.makeGameListViewModel())
+//
+//        window = UIWindow(frame: screen.coordinateSpace.bounds)
+//        window?.windowScene = screen
+//        window?.rootViewController = initialViewController
+//        window?.makeKeyAndVisible()
+//
+        //두번째 화면
+//        let diContainer = PlaySceneDIContainer()
+//
+//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let initialViewController = storyboard.instantiateViewController(identifier: "PlayViewController") as! PlayViewController
+//
+//        initialViewController.depend(viewModel: diContainer.makePlayViewModel())
+//
+//        window = UIWindow(frame: screen.coordinateSpace.bounds)
+//        window?.windowScene = screen
+//        window?.rootViewController = initialViewController
+//        window?.makeKeyAndVisible()
+        
         let diContainer = ScoreViewSceneDIContainer()
     
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
