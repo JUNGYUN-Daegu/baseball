@@ -11,14 +11,14 @@ import Combine
 protocol NetworkControllerProtocol {
     typealias Headers = [String: Any]
     
-    func get<T>(type: T.Type,
+    func request<T>(type: T.Type,
                 url: URL?,
                 method: HTTPMethod
     ) -> AnyPublisher<T, NetworkError> where T: Codable
 }
 
 final class NetworkController: NetworkControllerProtocol {
-    func get<T>(type: T.Type, url: URL?, method: HTTPMethod) -> AnyPublisher<T, NetworkError> where T : Codable {
+    func request<T>(type: T.Type, url: URL?, method: HTTPMethod) -> AnyPublisher<T, NetworkError> where T : Codable {
         guard let safeURL = url else {
             return Fail(error: NetworkError.invalidURL).eraseToAnyPublisher()
         }

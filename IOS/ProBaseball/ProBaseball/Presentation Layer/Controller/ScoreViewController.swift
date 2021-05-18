@@ -27,6 +27,8 @@ class ScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchGameInfo()
+        self.bind()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "baseBallPattern-small")!)
         
         homeTeamNameLabel.font = UIFont(name: "AmericanCaptain", size: 40)
@@ -35,18 +37,16 @@ class ScoreViewController: UIViewController {
         let font: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont(name: "AmericanCaptain", size: 30)!]
             teamSelectSegmentedControl.setTitleTextAttributes(font, for: .normal)
         
-        playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PlayerListCollectionViewCell")
+        playerListCollectionView.register(UINib(nibName: PlayerListCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: PlayerListCollectionViewCell.identifier)
 
-        playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier)
+        playerListCollectionView.register(UINib(nibName: PlayerListCollectionViewHeaderView.reuseIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PlayerListCollectionViewHeaderView.reuseIdentifier)
         
-        playerListCollectionView.register(UINib(nibName: "PlayerListCollectionViewFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PlayerListCollectionViewFooterView.reuseIdentifier)
+        playerListCollectionView.register(UINib(nibName: PlayerListCollectionViewFooterView.reuseIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: PlayerListCollectionViewFooterView.reuseIdentifier)
         
         playerListCollectionView.dataSource = self.dataSource
         playerListCollectionView.delegate = self
         
         self.dataSource = configureDataSource(index: 0)
-
-        bind()
     }
 
     @IBAction func changeSegmentedControl(_ sender: UISegmentedControl) {
@@ -66,8 +66,11 @@ class ScoreViewController: UIViewController {
         self.viewModel = viewModel
     }
     
-    func bind() {
-        viewModel.fetchGameInfo()
+    private func fetchGameInfo() {
+        self.viewModel.fetchGameInfo()
+    }
+    
+    private func bind() {
         viewModel.didUpdateGameInfo { (game) in
             self.updateSnapshot(with: game, index: 0)
             self.updateSegConLabels(with: game)
@@ -86,7 +89,7 @@ class ScoreViewController: UIViewController {
     
     func configureDataSource(index: Int) -> UICollectionViewDiffableDataSource<ScoreSection, Player> {
         let dataSource = UICollectionViewDiffableDataSource<ScoreSection, Player>(collectionView: playerListCollectionView) { (collectionView, indexPath, player) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlayerListCollectionViewCell", for: indexPath) as! PlayerListCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayerListCollectionViewCell.identifier, for: indexPath) as! PlayerListCollectionViewCell
             cell.configureCell(with: player)
             return cell
         }

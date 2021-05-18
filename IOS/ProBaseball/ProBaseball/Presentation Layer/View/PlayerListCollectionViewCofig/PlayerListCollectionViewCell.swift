@@ -8,6 +8,8 @@
 import UIKit
 
 class PlayerListCollectionViewCell: UICollectionViewCell {
+    static let identifier = "PlayerListCollectionViewCell"
+    
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var plateAppearanceLabel: UILabel!
     @IBOutlet weak var hitsNumbersLabel: UILabel!

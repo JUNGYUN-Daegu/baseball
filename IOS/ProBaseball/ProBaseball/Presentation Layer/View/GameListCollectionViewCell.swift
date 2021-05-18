@@ -8,6 +8,8 @@
 import UIKit
 
 class GameListCollectionViewCell: UICollectionViewCell {
+    static let identifier = "BallCountCollectionViewCell"
+    
     @IBOutlet weak var gameNumberLabel: UILabel!
     @IBOutlet weak var homeTeamLabel: UILabel!
     @IBOutlet weak var awayTeamLabel: UILabel!

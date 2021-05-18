@@ -8,7 +8,8 @@
 import UIKit
 
 class BallCountCollectionViewCell: UICollectionViewCell {
-
+    static let identifier = "BallCountCollectionViewCell"
+    
     @IBOutlet weak var cellCount: UIButton!
     @IBOutlet weak var ballState: UILabel!
     @IBOutlet weak var ballStateHistoryNum: UILabel!

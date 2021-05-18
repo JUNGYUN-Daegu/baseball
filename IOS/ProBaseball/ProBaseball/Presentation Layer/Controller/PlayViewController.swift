@@ -43,10 +43,11 @@ class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ballCountCollectionView.register(UINib(nibName: "BallCountCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BallCountCollectionViewCell")
+        self.fetchGame()
+        self.bind()
+        ballCountCollectionView.register(UINib(nibName: BallCountCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: BallCountCollectionViewCell.identifier)
         ballCountCollectionView.dataSource = dataSource
         ballCountCollectionView.delegate = self
-        bind()
         addBatterView()
         runToFirstBase()
         throwBall()
@@ -158,8 +159,11 @@ class PlayViewController: UIViewController {
         completion: nil)
     }
     
+    private func fetchGame() {
+        self.viewModel.fetchGame()
+    }
+    
     func bind() {
-        viewModel.fetchGame()
         viewModel.didUpdateGame { [weak self] (game) in
             self?.updateSnapshot(with: game)
             
@@ -216,10 +220,10 @@ class PlayViewController: UIViewController {
         return dataSource
     }
     
-    func updateSnapshot(with: Game) {
+    func updateSnapshot(with game: Game) {
         var snapshot = NSDiffableDataSourceSnapshot<BallCountSection, Game>()
         snapshot.appendSections(BallCountSection.allCases)
-        snapshot.appendItems([with], toSection: BallCountSection.main)
+        snapshot.appendItems([game], toSection: BallCountSection.main)
  
         dataSource.apply(snapshot)
     }

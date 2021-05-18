@@ -31,7 +31,7 @@ class PlayerIconView: UIView {
         context.move(to: startPoint)
         context.addCurve(to:rightPoint, control1: lowerLeftPoint, control2: lowerRightPoint)
         context.addQuadCurve(to: startPoint, control: CGPoint(x: centerPoint.x, y: frame.height / 10))
-        context.setFillColor(UIColor(named: "retroIvory")?.cgColor ?? UIColor.red.cgColor)
+        context.setFillColor(UIColor.retroIvory.cgColor ?? UIColor.red.cgColor)
         context.fillPath()
     }
     
@@ -49,7 +49,7 @@ class PlayerIconView: UIView {
         context.addQuadCurve(to: rightPoint, control: capBrimVolumeControlPoint)
         context.addQuadCurve(to: capTopPoint, control: capRightVolumeControlPoint)
         context.addQuadCurve(to: startPoint, control: capLeftVolumeControlPoint)
-        context.setFillColor(UIColor(named: "retroBlue")?.cgColor ?? UIColor.red.cgColor)
+        context.setFillColor(UIColor.retroBlue.cgColor ?? UIColor.red.cgColor)
         context.fillPath()
     }
     
@@ -75,7 +75,7 @@ class PlayerIconView: UIView {
         context.addQuadCurve(to: pupilPointLeft, control: lowerLeftPoint)
         context.move(to: eyeCenterPoint)
         context.addQuadCurve(to: pupilPointRight, control: lowerRightPoint)
-        context.setFillColor(UIColor(named: "retroBrown")?.cgColor ?? UIColor.red.cgColor)
+        context.setFillColor(UIColor.retroBrown.cgColor ?? UIColor.red.cgColor)
         context.fillPath()
     }
     

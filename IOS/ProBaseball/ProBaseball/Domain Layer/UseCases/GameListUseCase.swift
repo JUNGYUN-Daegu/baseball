@@ -20,6 +20,6 @@ class GameListUseCase: GameListUseCaseProtocol {
     }
     
     func fetchGameList(endpoint: Endpoint) -> AnyPublisher<GameList, NetworkError> {
-        return networkController.get(type: GameList.self, url: endpoint.url, method: .get)
+        return networkController.request(type: GameList.self, url: endpoint.url, method: .get)
     }
 }

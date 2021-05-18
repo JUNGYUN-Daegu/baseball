@@ -23,6 +23,7 @@ class PlayView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        drawBase()
     }
     
     override func draw(_ rect: CGRect) {

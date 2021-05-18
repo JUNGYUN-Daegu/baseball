@@ -22,27 +22,29 @@ class GameListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchGameList()
+        self.bind()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "baseBallPattern")!)
         self.gameListCollectionView.backgroundColor = .clear
         
-        gameListCollectionView.register(UINib(nibName: "GameListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "GameListCollectionViewCell")
+        gameListCollectionView.register(UINib(nibName: GameListCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: GameListCollectionViewCell.identifier)
         gameListCollectionView.dataSource = dataSource
         gameListCollectionView.delegate = self
         self.dataSource = configureDataSource()
         
         configureGameListLabel()
-        bind()
+     
     }
     
     func configureGameListLabel() {
-        self.gameListLabel.layer.shadowColor = UIColor(named: "retroBrown")?.cgColor
+        self.gameListLabel.layer.shadowColor = UIColor.retroBrown.cgColor
         self.gameListLabel.layer.shadowOffset = CGSize(width: 0, height: 6)
         self.gameListLabel.layer.shadowOpacity = 1.0
         self.gameListLabel.layer.shadowRadius = 0.0
         
         let str = NSMutableAttributedString(string: "Game List", attributes: [
-            NSMutableAttributedString.Key.foregroundColor : UIColor(named: "retroIvory") ?? UIColor.red,
-            NSMutableAttributedString.Key.strokeColor : UIColor(named: "retroBrown") ?? UIColor.red,
+            NSMutableAttributedString.Key.foregroundColor : UIColor.retroIvory ?? UIColor.red,
+            NSMutableAttributedString.Key.strokeColor : UIColor.retroBrown ?? UIColor.red,
             NSMutableAttributedString.Key.strokeWidth : -5,
             NSMutableAttributedString.Key.font : UIFont.systemFont(ofSize: 80.0)
             ])
@@ -67,8 +69,11 @@ class GameListViewController: UIViewController {
         self.viewModel = viewModel
     }
     
-    func bind() {
+    private func fetchGameList() {
         viewModel.fetchGameList()
+    }
+    
+    private func bind() {
         viewModel.didUpdateGameList { [weak self] (gameList) in
             self?.updateSnapshot(with: gameList)
         }
@@ -76,7 +81,7 @@ class GameListViewController: UIViewController {
     
     func configureDataSource() -> UICollectionViewDiffableDataSource<GameListSection, Game> {
         let dataSource = UICollectionViewDiffableDataSource<GameListSection, Game>(collectionView: gameListCollectionView) { (collectionView, indexPath, game) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameListCollectionViewCell", for: indexPath) as! GameListCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GameListCollectionViewCell.identifier, for: indexPath) as! GameListCollectionViewCell
             cell.homeTeamLabel.text = game.myTeam.name
             cell.awayTeamLabel.text = game.opponentTeam.name
             cell.gameNumberLabel.text = "Game \(indexPath.row + 1)"

@@ -20,6 +20,6 @@ class ScoreUseCase: ScoreUseCaseProtocol {
     }
     
     func fetchGameInformation(endpoint: Endpoint) -> AnyPublisher<Game, NetworkError> {
-        return networkController.get(type: Game.self, url: endpoint.url, method: .get)
+        return networkController.request(type: Game.self, url: endpoint.url, method: .get)
     }
 }

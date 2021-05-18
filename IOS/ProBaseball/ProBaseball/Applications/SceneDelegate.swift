@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //첫번째 화면
 //        let diContainer = GameListSceneDIContainer()
 //
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let initialViewController = storyboard.instantiateViewController(identifier: "GameListViewController") as! GameListViewController
+//        let storyboard = UIStoryboard.init(name: Constant.mainStoryBoardName, bundle: nil)
+//        let initialViewController = storyboard.instantiateViewController(identifier: Constant.gameListViewControllerName) as! GameListViewController
 //
 //        initialViewController.depend(viewModel: diContainer.makeGameListViewModel())
 //
@@ -29,8 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //두번째 화면
 //        let diContainer = PlaySceneDIContainer()
 //
-//        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-//        let initialViewController = storyboard.instantiateViewController(identifier: "PlayViewController") as! PlayViewController
+//        let storyboard = UIStoryboard.init(name: Constant.mainStoryBoardName, bundle: nil)
+//        let initialViewController = storyboard.instantiateViewController(identifier: Constant.playViewControllerName) as! PlayViewController
 //
 //        initialViewController.depend(viewModel: diContainer.makePlayViewModel())
 //
@@ -41,8 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let diContainer = ScoreViewSceneDIContainer()
     
-        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(identifier: "ScoreViewController") as! ScoreViewController
+        let storyboard = UIStoryboard.init(name: Constant.mainStoryBoardName, bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(identifier: Constant.scoreViewControllerName) as! ScoreViewController
         
         initialViewController.depend(viewModel: diContainer.makeScoreViewModel())
         
